@@ -1,0 +1,56 @@
+<div cdkDropListGroup></div>
+
+<div cdkDropListGroup class="row">
+  <div
+    cdkDropList
+    [cdkDropListData]="todo"
+    class="col-sm-12 col-md-4 col-lg-2"
+    (cdkDropListDropped)="drop($event)"
+  >
+    <h1>To do</h1>
+    <mat-card *ngFor="let item of todo" cdkDrag [cdkDragData]="item">
+      <p>
+        {{ item.title }}
+      </p>
+      <p *ngIf="item.comments.length > 0" style="font-size: 10px">
+        {{ item?.comments?.length + 1 }} Comentários
+      </p>
+    </mat-card>
+  </div>
+
+  <div
+    cdkDropList
+    [cdkDropListData]="done"
+    class="col-sm-12 col-md-4 col-lg-2"
+    (cdkDropListDropped)="drop($event)"
+  >
+    <h1>Done</h1>
+
+    <mat-card *ngFor="let item of done" cdkDrag [cdkDragData]="item">
+      <p>
+        {{ item.title }}
+      </p>
+      <p *ngIf="item.comments.length > 0" style="font-size: 10px">
+        {{ item?.comments?.length + 1 }} Comentários
+      </p>
+    </mat-card>
+  </div>
+
+  <div
+    cdkDropList
+    [cdkDropListData]="review"
+    class="col-sm-12 col-md-4 col-lg-2"
+    (cdkDropListDropped)="drop($event)"
+  >
+    <h1>Review</h1>
+
+    <mat-card *ngFor="let item of review" cdkDrag [cdkDragData]="item">
+      <p>
+        {{ item.title }}
+      </p>
+      <p *ngIf="item.comments.length > 0" style="font-size: 10px">
+        {{ item?.comments?.length + 1 }} Comentários
+      </p>
+    </mat-card>
+  </div>
+</div>

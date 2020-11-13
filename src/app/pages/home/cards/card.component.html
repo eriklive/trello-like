@@ -1,0 +1,8 @@
+<mat-card *ngFor="let item of itens" cdkDrag>
+  <p>
+    {{ item.title }}
+  </p>
+  <p *ngIf="item.comments.length > 0" style="font-size: 10px">
+    {{ item?.comments?.length + 1 }} Comentários
+  </p>
+</mat-card>
