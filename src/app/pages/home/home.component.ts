@@ -4,7 +4,9 @@ import {
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Item } from '../../models';
+import { ModalComponent } from './modal/modal.component';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +14,8 @@ import { Item } from '../../models';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor() {}
+  constructor(public dialog: MatDialog) {}
+
   // tslint:disable-next-line: member-ordering
   todo: Array<Item> = [
     {
@@ -85,5 +88,17 @@ export class HomeComponent implements OnInit {
         event.currentIndex
       );
     }
+  }
+
+  openDialog(item: Item): void {
+    const dialogRef = this.dialog.open(ModalComponent, {
+      width: '850px',
+      data: item,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+      // this.animal = result;
+    });
   }
 }

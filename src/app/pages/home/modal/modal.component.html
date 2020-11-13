@@ -1,0 +1,51 @@
+<h1>{{ item.title }}</h1>
+
+<p>{{ item.comments.length }} Comentários</p>
+<!-- <div *ngFor="let comentario of item.comments">
+  <div class="row">
+    <div class="col-sm-12" (click)="adicionarReply(comentario)">
+      <button mat-raised-button>Adicionar</button>
+    </div>
+  </div>
+</div> -->
+
+<div class="row">
+  <mat-accordion class="col-sm-12">
+    <mat-expansion-panel hideToggle *ngFor="let comentario of item.comments">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{ comentario.user }} disse: "{{ comentario.comment }}"
+        </mat-panel-title>
+        <mat-panel-description>
+          {{ comentario?.reply?.length || 0 }} respostas;
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <p *ngFor="let resposta of comentario.reply">{{ resposta.comment }}</p>
+
+      <br />
+
+      <mat-form-field appearance="fill" class="col-sm-9">
+        <mat-label>resposta</mat-label>
+        <input matInput [formControl]="reply" />
+      </mat-form-field>
+
+      <div class="col-sm-2" (click)="adicionarReply(comentario)">
+        <button mat-raised-button>Adicionar</button>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+
+<br />
+
+<div class="row">
+  <mat-form-field appearance="fill" class="col-sm-12">
+    <mat-label>Adicionar comentário</mat-label>
+    <textarea matInput [formControl]="comentario"></textarea>
+  </mat-form-field>
+
+  <div class="col-sm-12" (click)="adicionarComentario()">
+    <button mat-raised-button style="float: right">Adicionar</button>
+  </div>
+</div>
